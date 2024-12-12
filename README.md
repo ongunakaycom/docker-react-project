@@ -1,6 +1,6 @@
 # Docker React CI/CD with Vercel
 
-By leveraging Docker for containerization and Vercel for CI/CD, you can streamline the development and deployment process of your React applications, ensuring efficient and reliable delivery to your users.
+Learned how to Dockerize React applications, creating lightweight and portable containers.
 
 ## Available Scripts
 
