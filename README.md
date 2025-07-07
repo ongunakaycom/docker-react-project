@@ -120,8 +120,14 @@ MIT Licensed - See [LICENSE](LICENSE) for details.
 
 ---
 
-## ✉️ Contact
+## 👋 About Me
 
-**Ongun Akay**  
-📧 info@ongunakay.com  
-🌐 [ongunakay.com](https://ongunakay.com)
+I'm **Ongun Akay** — a remote-first, frontend-focused developer with strong DevOps skills, cloud fluency, and a passion for building scalable, AI-ready web applications.
+
+- 🌐 **Website**: [ongunakay.com](https://ongunakay.com)  
+- 💼 **LinkedIn**: [linkedin.com/in/ongunakay](https://linkedin.com/in/ongunakay)  
+- 🧑‍💻 **GitHub**: [github.com/ongunakaycom](https://github.com/ongunakaycom)  
+- 📬 **Email**: info@ongunakay.com  
+
+I'm open to **remote and hybrid opportunities across Europe and globally**. Let’s build something impactful together!
+
