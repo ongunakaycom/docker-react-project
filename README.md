@@ -1,5 +1,3 @@
-Here's the fully secured, window-compatible Markdown version with all text properly formatted:
-
 ```markdown
 # ⚛️ ReactOps – Dockerized React App with Testing & CI/CD
 
