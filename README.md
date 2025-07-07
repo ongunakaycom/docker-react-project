@@ -1,131 +1,131 @@
+Here's the fully secured, window-compatible Markdown version with all text properly formatted:
+
+```markdown
 # ⚛️ ReactOps – Dockerized React App with Testing & CI/CD
 
-This project is a production-ready **React application** built with modern frontend tooling, Docker support, and test scaffolding. It serves as a foundation for full-stack scalability and DevOps automation.
+This project is a production-ready **React application** built with modern frontend tooling, Docker support, and test scaffolding.
 
-> ✅ **Live Preview**: _(https://docker-react-rosy.vercel.app/)_  
+> ✅ **Live Preview**: [https://docker-react-rosy.vercel.app/](https://docker-react-rosy.vercel.app/)  
 > 🐳 **Dockerized** • 🧪 Test-Ready • 🔁 CI/CD-Enabled • ⚛️ React 18
 
 ---
 
 ## 🚀 Tech Stack
 
-| Layer        | Tools/Technologies                                      |
-|--------------|----------------------------------------------------------|
-| Front-End    | React 18, CSS Modules, Web Vitals                        |
-| Testing      | Jest, React Testing Library                              |
-| CI/CD        | GitHub Actions (optional setup)                          |
-| Deployment   | Docker (multi-env), Vercel/Netlify compatible            |
-| Dev Tools    | ESLint, Browserslist, Lighthouse, Web Vitals             |
+| Layer        | Tools                          |
+|--------------|--------------------------------|
+| Front-End    | React 18, CSS Modules         |
+| Testing      | Jest, React Testing Library   |
+| CI/CD        | GitHub Actions                |
+| Deployment   | Docker, Vercel                |
+| Dev Tools    | ESLint, Prettier              |
 
 ---
 
 ## 🧰 Features
 
-- 📦 **React 18 App** bootstrapped with `create-react-app`
-- 🧪 **Testing Support** with `Jest` and `@testing-library/react`
-- 🐳 **Dockerized** for containerized development & production
-- 🔧 **DevOps-Ready**: Easily integrate with GitHub Actions or GitLab CI
-- 🧠 **Performance Monitored** with `reportWebVitals.js`
-- 📱 **Responsive, PWA-Friendly** with `manifest.json` + `favicon`
+- 📦 **React 18** with create-react-app
+- 🧪 **Jest + Testing Library**
+- 🐳 **Multi-stage Dockerfile**
+- 🔧 **CI/CD-ready workflows**
+- 📱 **PWA configuration**
 
 ---
 
 ## 🛠️ Project Structure
 
-├── .gitignore
-├── docker
-├── Dockerfile
-├── package-lock.json
-├── package.json
-├── public/
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
-├── README.md
-├── src/
-│   ├── App.css
-│   ├── App.js
-│   ├── App.test.js
-│   ├── index.css
-│   ├── index.js
-│   ├── logo.svg
-│   ├── reportWebVitals.js
-│   └── setupTests.js
-└── yarn.lock
-
+```text
+.
+├── .github/           # CI workflows
+├── docker/            # Docker configs
+├── public/            # Static assets
+├── src/               # Application code
+│   ├── components/    # React components
+│   ├── tests/         # Test files
+│   └── ...            # App source
+├── Dockerfile         # Production build
+├── docker-compose.yml # Dev environment
+└── ...                # Config files
+```
 
 ---
 
-## 🐳 Docker Support
+## 🐳 Docker Commands
 
-**Build and run in Docker:**
-
+**Development:**
 ```bash
-# Build image
-docker build -t reactops-app .
+docker-compose up --build
+```
 
-# Run container
-docker run -p 3000:3000 reactops-app
+**Production:**
+```bash
+docker build -t reactapp .
+docker run -p 3000:80 reactapp
+```
 
+---
 
 ## 🧪 Testing
-Run tests with:
 
+**Run tests:**
 ```bash
 npm test
+# or
+docker-compose run app npm test
+```
 
-Uses Jest with React Testing Library
-Custom setup via setupTests.js
+**Coverage report:**
+```bash
+npm test -- --coverage
+```
 
+---
 
-##  ⚙️ Scripts
-Command	Description
-npm start	Starts local dev server
-npm build	Builds app for production
-npm test	Runs test suite with coverage
-npm eject	Ejects CRA config (not advised)
+## ⚙️ Development Scripts
 
-🔐 Security & CI/CD (Optional Setup)
-This app is ready for:
+| Command         | Action                         |
+|-----------------|--------------------------------|
+| `npm start`     | Start development server       |
+| `npm build`     | Create production build        |
+| `npm test`      | Run test suite                 |
+| `npm run lint`  | Run ESLint                     |
 
-✅ GitHub Actions CI pipelines: lint → test → build → deploy
+---
 
-✅ Dependabot alerts for dependency security
+## 🔐 Security Features
 
-✅ Container scanning with DockerHub/GitHub workflow integration
+1. **Dependency Scanning**
+   ```bash
+   npm audit
+   ```
+2. **Container Security**
+   ```bash
+   docker scan reactapp
+   ```
+3. **CI Pipeline Checks**
+   - Automated vulnerability scanning
+   - Build-time security checks
 
-📌 Use Cases
-This project is ideal for:
+---
 
-🔄 DevOps CI/CD pipelines
+## 📌 Ideal For
 
-🐳 Docker image deployment for frontend services
+- 🔄 CI/CD Pipelines
+- 🐳 Containerized Deployments
+- 🧪 Test-Driven Development
+- ⚡ Rapid Prototyping
 
-🧪 Test-driven frontend development (TDD/BDD)
+---
 
-⚙️ Containerized microfrontend architecture
+## 📄 License
 
-💼 DevOps + Frontend hybrid portfolios
+MIT Licensed - See [LICENSE](LICENSE) for details.
 
-## 📣 Credits
-React – UI Library
+---
 
-Jest – JavaScript Testing
+## ✉️ Contact
 
-Testing Library – React Component Testing
-
-Docker – Containerization
-
-Create React App – Boilerplate Starter
-
-This project is licensed under the MIT License. See LICENSE for details.
-
-
-👨‍💻 About the Engineer
-I'm Ongun Akay – a front-end developer and DevOps engineer crafting scalable, testable, and deployable applications. I love bringing infrastructure and UI together through CI/CD automation, cloud-native tools, and modern front-end frameworks.
-
-🌍 ongunakay.com | 🧑‍💻 GitHub | 📫 info@ongunakay.com
-
+**Ongun Akay**  
+📧 info@ongunakay.com  
+🌐 [ongunakay.com](https://ongunakay.com)
+```
