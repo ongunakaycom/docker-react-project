@@ -1,4 +1,3 @@
-```markdown
 # ⚛️ ReactOps – Dockerized React App with Testing & CI/CD
 
 This project is a production-ready **React application** built with modern frontend tooling, Docker support, and test scaffolding.
@@ -22,10 +21,10 @@ This project is a production-ready **React application** built with modern front
 
 ## 🧰 Features
 
-- 📦 **React 18** with create-react-app
-- 🧪 **Jest + Testing Library**
-- 🐳 **Multi-stage Dockerfile**
-- 🔧 **CI/CD-ready workflows**
+- 📦 **React 18** with create-react-app  
+- 🧪 **Jest + Testing Library**  
+- 🐳 **Multi-stage Dockerfile**  
+- 🔧 **CI/CD-ready workflows**  
 - 📱 **PWA configuration**
 
 ---
@@ -101,16 +100,16 @@ npm test -- --coverage
    docker scan reactapp
    ```
 3. **CI Pipeline Checks**
-   - Automated vulnerability scanning
+   - Automated vulnerability scanning  
    - Build-time security checks
 
 ---
 
 ## 📌 Ideal For
 
-- 🔄 CI/CD Pipelines
-- 🐳 Containerized Deployments
-- 🧪 Test-Driven Development
+- 🔄 CI/CD Pipelines  
+- 🐳 Containerized Deployments  
+- 🧪 Test-Driven Development  
 - ⚡ Rapid Prototyping
 
 ---
@@ -126,4 +125,3 @@ MIT Licensed - See [LICENSE](LICENSE) for details.
 **Ongun Akay**  
 📧 info@ongunakay.com  
 🌐 [ongunakay.com](https://ongunakay.com)
-```
