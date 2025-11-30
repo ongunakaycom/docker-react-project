@@ -1,7 +1,3 @@
-Here’s an improved, polished version of your README with better structure, clarity, and readability while keeping it professional and developer-friendly:
-
----
-
 # ⚛️ ReactOps – Dockerized React App with Testing & CI/CD
 
 A production-ready **React 18 application** with modern tooling, Docker support, automated testing, and CI/CD workflows.
