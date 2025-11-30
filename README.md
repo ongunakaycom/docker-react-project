@@ -2,8 +2,11 @@
 
 A production-ready **React 18 application** with modern tooling, Docker support, automated testing, and CI/CD workflows.
 
-> ✅ **Live Preview:** [https://docker-react-rosy.vercel.app/](https://docker-react-rosy.vercel.app/)
-> 🐳 **Dockerized** • 🧪 Test-Ready • 🔁 CI/CD-Enabled • ⚛️ React 18
+* ✅ **Live Preview:** [https://docker-react-rosy.vercel.app/](https://docker-react-rosy.vercel.app/)
+* 🐳 **Dockerized** 
+* 🧪 Test-Ready 
+* 🔁 CI/CD-Enabled 
+* ⚛️ React 18
 
 ---
 
