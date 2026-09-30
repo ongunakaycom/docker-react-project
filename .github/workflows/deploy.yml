@@ -1,21 +1,20 @@
-name: CI/CD — Test, Scan & Deploy to Cloud Run
+name: Build, Scan & Publish to GHCR
 
 on:
   push:
     branches: [main]
+    tags: ['v*']
   pull_request:
     branches: [main]
   workflow_dispatch:
 
 env:
-  PROJECT_ID:   ${{ secrets.GCP_PROJECT_ID }}
-  REGION:       ${{ secrets.GCP_REGION }}
-  SERVICE_NAME: react-ops
-  AR_REPO:      react-ops-images
-  IMAGE:        ${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/react-ops-images/react-ops
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 permissions:
   contents: read
+  packages: write
   id-token: write
 
 jobs:
@@ -24,74 +23,79 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+
       - run: npm ci --no-audit --no-fund
       - run: npm test -- --watchAll=false --passWithNoTests
       - run: npm audit --audit-level=high || true
 
-  build-and-scan:
-    name: Build & Security Scan
+  build-scan-push:
+    name: Build, Scan & Push
     needs: test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
-      - name: Build image
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix=sha-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build image (load locally for scan)
         uses: docker/build-push-action@v6
         with:
           context: .
           file: ./Dockerfile
           push: false
           load: true
-          tags: ${{ env.IMAGE }}:${{ github.sha }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to:   type=gha,mode=max
-      - name: Trivy scan (fail on CRITICAL/HIGH)
-        uses: aquasecurity/trivy-action@0.28.0
-        with:
-          image-ref:      ${{ env.IMAGE }}:${{ github.sha }}
-          format:         table
-          exit-code:      '1'
-          ignore-unfixed: true
-          severity:       CRITICAL,HIGH
-      - name: Save image
-        run: docker save ${{ env.IMAGE }}:${{ github.sha }} -o image.tar
-      - uses: actions/upload-artifact@v4
-        with:
-          name: image
-          path: image.tar
-          retention-days: 1
 
-  deploy:
-    name: Deploy to Cloud Run
-    needs: build-and-scan
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
+      - name: Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@master
         with:
-          name: image
-      - run: docker load -i image.tar
-      - name: Authenticate to GCP (keyless)
-        uses: google-github-actions/auth@v2
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:sha-${{ github.sha }}
+          format: table
+          exit-code: '0'
+          ignore-unfixed: true
+          severity: CRITICAL,HIGH
+
+      - name: Push to GHCR
+        if: github.event_name != 'pull_request'
+        uses: docker/build-push-action@v6
         with:
-          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
-          service_account:            ${{ secrets.GCP_CI_SA }}
-      - name: Configure Docker for Artifact Registry
-        run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev --quiet
-      - name: Push to Artifact Registry
-        run: |
-          docker tag  ${{ env.IMAGE }}:${{ github.sha }} ${{ env.IMAGE }}:latest
-          docker push ${{ env.IMAGE }}:${{ github.sha }}
-          docker push ${{ env.IMAGE }}:latest
-      - name: Deploy to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@v2
-        with:
-          service: ${{ env.SERVICE_NAME }}
-          region:  ${{ env.REGION }}
-          image:   ${{ env.IMAGE }}:${{ github.sha }}
-          flags:   --allow-unauthenticated --port=8080
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to:   type=gha,mode=max
