@@ -1,0 +1,16 @@
+node_modules
+build
+.git
+.github
+.gitignore
+terraform
+*.md
+!README.md
+docker-compose*.yml
+.env*
+coverage
+.vscode
+.idea
+.DS_Store
+npm-debug.log*
+yarn-error.log*
