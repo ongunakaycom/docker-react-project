@@ -31,3 +31,10 @@ terraform/*.tfplan
 
 # local artifacts
 project_file_structure.txt
+# SSH keys — NEVER commit
+*.ppk
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+oci_reactops*
