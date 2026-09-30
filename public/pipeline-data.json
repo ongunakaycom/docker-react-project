@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-09-30T11:30:00Z",
+  "repository": "ongunakaycom/cloud-native-react-pipeline",
+  "branch": "main",
+  "image": {
+    "name": "ghcr.io/ongunakaycom/cloud-native-react-pipeline",
+    "tag": "latest",
+    "sizeMB": 52.3,
+    "digest": "sha256:64a51d947a9ecf24036edf00e1fdfe922fe05386003a8ec6ce4b927c72c43569"
+  },
+  "deployment": {
+    "provider": "Vercel",
+    "url": "https://docker-react-rosy.vercel.app",
+    "status": "ready",
+    "lastDeployedAt": "2026-09-30T11:27:15Z"
+  },
+  "ci": {
+    "provider": "GitHub Actions",
+    "workflow": "Build, Scan & Publish to GHCR",
+    "status": "success",
+    "runNumber": 4,
+    "runId": 1234567890,
+    "durationSeconds": 154,
+    "startedAt": "2026-09-30T11:24:28Z",
+    "completedAt": "2026-09-30T11:27:02Z"
+  },
+  "lastCommit": {
+    "sha": "7c97bd732dc2f73a9454ead087f6ee985a677424",
+    "shortSha": "7c97bd7",
+    "message": "Update README.MD",
+    "author": "ongunakaycom",
+    "committedAt": "2026-09-30T11:22:10Z"
+  },
+  "stages": [
+    { "name": "Set up job",             "status": "completed", "conclusion": "success", "durationSeconds": 5 },
+    { "name": "Checkout",               "status": "completed", "conclusion": "success", "durationSeconds": 1 },
+    { "name": "Set up Docker Buildx",   "status": "completed", "conclusion": "success", "durationSeconds": 11 },
+    { "name": "Log in to GHCR",         "status": "completed", "conclusion": "success", "durationSeconds": 0 },
+    { "name": "Extract metadata",       "status": "completed", "conclusion": "success", "durationSeconds": 1 },
+    { "name": "Build and load locally", "status": "completed", "conclusion": "success", "durationSeconds": 38 },
+    { "name": "Trivy vulnerability scan","status": "completed","conclusion": "success", "durationSeconds": 5 },
+    { "name": "Push to GHCR",           "status": "completed", "conclusion": "success", "durationSeconds": 2 }
+  ],
+  "stats": {
+    "totalRuns": 4,
+    "successRuns": 4,
+    "failedRuns": 0,
+    "successRate": 100,
+    "avgDurationSeconds": 154
+  },
+  "recentRuns": [
+    { "number": 4, "conclusion": "success", "shortSha": "7c97bd7", "message": "Update README.MD", "durationSeconds": 154, "completedAt": "2026-09-30T11:27:02Z" },
+    { "number": 3, "conclusion": "success", "shortSha": "f23f0f0", "message": "ci: switch to GHCR publish", "durationSeconds": 147, "completedAt": "2026-09-30T11:15:00Z" },
+    { "number": 2, "conclusion": "success", "shortSha": "1abcc91", "message": "chore: add SSH key patterns", "durationSeconds": 42, "completedAt": "2026-09-30T11:02:00Z" },
+    { "number": 1, "conclusion": "success", "shortSha": "2d3e8a3", "message": "feat(infra): production-grade", "durationSeconds": 43, "completedAt": "2026-09-30T10:48:00Z" }
+  ],
+  "security": {
+    "trivy": { "critical": 0, "high": 0, "medium": 2, "low": 8 },
+    "npmAudit": { "critical": 0, "high": 0, "moderate": 0, "low": 0 },
+    "nonRootUser": true,
+    "securityHeaders": ["CSP", "HSTS", "X-Frame-Options", "X-Content-Type-Options", "Referrer-Policy", "Permissions-Policy"]
+  }
+}
